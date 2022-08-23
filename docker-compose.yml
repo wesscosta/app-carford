@@ -2,7 +2,8 @@ version: "3.9"
 
 services:
   db:
-    image: postgres:13
+    image: postgres
+    container_name: postgres
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
@@ -12,46 +13,51 @@ services:
       - ./data/db:/var/lib/postgresql/data
     restart: always
     networks:
-      - postgres-network
+      - my-network
 
   pgadmin-compose:
     image: dpage/pgadmin4
+    container_name: pgadmin4
     environment:
       PGADMIN_DEFAULT_EMAIL: "postgres@carford.com.br"
-      PGADMIN_DEFAULT_PASSWORD: "carford"
+      PGADMIN_DEFAULT_PASSWORD: "postgres"
     ports:
-      - "5432:80"
-    restart: always
+      - "15432:80"
+    # restart: always
     depends_on:
       - db
     networks:
-      - postgres-network
+      - my-network
 
-  web:
+  flask:
     build:
       context: .
-      dockerfile: ./docker/dev/python/Dockerfile
-    command: gunicorn -w 4 carford.wsgi -b 0.0.0.0:8000 --reload
+      dockerfile: ./docker/python/Dockerfile
+    container_name: flask
+    command: gunicorn --bind 0.0.0.0:8000 --workers 4 "create_app:create_app()"
     volumes:
-      - ./code:/code
-      - static_files:/static_files
-    ports:
-      - "8000:8000"
-    environment:
-      - DJANGO_SETTINGS_MODULE=settings.dev
-      - POSTGRES_NAME=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+      - ./code/backend:/code
+    # ports:
+    #   - 8000:8000
     restart: always
-    depends_on:
-      - db
     networks:
-      - postgres-network
+      my-network:
+        aliases:
+          - flask-app
 
-
-volumes:
-  static_files:
-
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    volumes:
+      - ./code/backend:/code
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - 80:80
+    networks:
+      - my-network
+    depends_on:
+      - flask
+      
 networks:
-  postgres-network:
+  my-network:
     driver: bridge
