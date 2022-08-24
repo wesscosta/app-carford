@@ -39,7 +39,7 @@ def index():
 
 @app.route("/api/")
 def root():
-    return jsonify({"message": "Hello World"})
+    return jsonify({"message": "API carford"})
 
 def format_owner(owner):
     return{
