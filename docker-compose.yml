@@ -7,6 +7,7 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
     ports:
       - "5432:5432"
     volumes:
@@ -23,7 +24,7 @@ services:
       PGADMIN_DEFAULT_PASSWORD: "postgres"
     ports:
       - "15432:80"
-    # restart: always
+    restart: always
     depends_on:
       - db
     networks:
@@ -34,11 +35,13 @@ services:
       context: .
       dockerfile: ./docker/python/Dockerfile
     container_name: flask
-    command: gunicorn --bind 0.0.0.0:8000 --workers 4 "create_app:create_app()"
+    command: gunicorn --bind 0.0.0.0:8000 --workers 4 wsgi:app
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/postgres
     volumes:
       - ./code/backend:/code
-    # ports:
-    #   - 8000:8000
+    ports:
+      - "8000"
     restart: always
     networks:
       my-network:

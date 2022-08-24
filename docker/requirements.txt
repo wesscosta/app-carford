@@ -1,2 +1,8 @@
 flask
 gunicorn
+psycopg2-binary
+Flask-SQLAlchemy
+python-dotenv
+flask-cors
+DateTime
+uwsgi
