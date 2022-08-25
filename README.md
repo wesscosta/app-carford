@@ -33,5 +33,16 @@
 ```bash
   docker exec -it CONTAINER_NAME bash
 ```
+4. Entra no container web
+```bash
+  docker exec -it CONTAINER_NAME bash
+```
+5. Acesso: [http://localhost:80/](http://localhost:80)
 
-1. Acesso: [http://127.0.0.1:80/](http://127.0.0.1:8000) or [http://localhost:80/](http://localhost:8000)
+6. Acesso ao PGAdmin: [http://localhost:15432/](http://localhost:15432)
+```text
+  - email: postgres@postgres.com
+  - senha: postgres
+```
+
+

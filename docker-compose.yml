@@ -44,9 +44,8 @@ services:
     ports:
       - '5000'
     networks:
-      backend-network:
-        aliases:
-          - flask-app
+      - frontend-network
+      - backend-network
 
   nginx:
     image: nginx:latest
@@ -58,14 +57,13 @@ services:
     ports:
       - 80:80
     networks:
-      - backend-network
+      - frontend-network
     depends_on:
       - flask
 
 networks:
   backend-network:
     driver: bridge
+  frontend-network:
+    driver: bridge
 
-# volumes:
-#   static_files:
-#     driver: local

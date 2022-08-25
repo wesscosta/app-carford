@@ -1,5 +1,11 @@
 flask
-psycopg2-binary
+psycopg2
 Flask-SQLAlchemy
+Flask-Migrate
 flask-cors
 DateTime
+
+pytest
+coverage
+pytest-cov
+pytest-flask

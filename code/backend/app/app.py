@@ -1,14 +1,21 @@
-from flask import Flask, request, jsonify
-from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
-import os
+from flask import Flask, jsonify
+from .models import db, migrate
+from app import views
 
-app = Flask(__name__)
+def create_app():
 
-@app.route("/")
-def index():
-    return "<h2>Esta é a página inicial<h2>"
+    app = Flask(__name__)
+    app.config.from_object('config')
 
-@app.route("/api/")
-def root():
-    return jsonify({"message": "API app carford"})
+    db.init_app(app)
+    migrate.init_app(app, db)
+
+    @app.route("/")
+    def index():
+        return "<h2>Esta é a página inicial<h2>"
+
+    @app.route("/api/")
+    def root():
+        return jsonify({"message": "API app carford"})
+
+    return app
