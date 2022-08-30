@@ -15,10 +15,10 @@
 1. Faça o clone do repositório do github
 ```bash
   # https
-  git clone https://github.com/Transportta/Sistema-Transportta.git sistema-transportta
+  git clone https://github.com/wesscosta/app-carford.git
 
   # ssh
-  git clone git@github.com:Transportta/Sistema-Transportta.git sistema-transportta
+  git clone git@github.com:wesscosta/app-carford.git
 ```
 2. Subir os containers
 ```bash
