@@ -1,8 +1,8 @@
 # Carford
 Este é um projeto fullstack com o backend em flask(python), frontend em desenvolvimento em react
 Banco de dados com Postgres e PGadmin4 além do uso de tecnologias como docker, docker-compose, nginx, gunicorn...
- O desafio consiste na seguinte logica.
- 
+
+## O desafio consiste na seguinte logica:
 ### Nork-Town (cidade)
 - Uma Pessoa pode ter até 3 veículos
 - Os veículos podem ter as cores 'amarelo', 'azul' ou 'cinza'.
@@ -48,5 +48,4 @@ Banco de dados com Postgres e PGadmin4 além do uso de tecnologias como docker, 
   - email: postgres@postgres.com
   - senha: postgres
 ```
-
 
