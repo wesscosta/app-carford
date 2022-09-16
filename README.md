@@ -1,8 +1,12 @@
-# carford
+# Carford
+Este é um projeto fullstack com o backend em flask(python), frontend em desenvolvimento em react
+Banco de dados com Postgres e PGadmin4 além do uso de tecnologias como docker, docker-compose, nginx, gunicorn...
+ O desafio consiste na seguinte logica.
+ 
 ### Nork-Town (cidade)
-- 1 Pessoa pode ter até 3 veículos
-- os veiculos podem ter as cores 'amarelo', 'azul' ou 'cinza'.
-- os veiculos podem ser dos modelos: 'escotilha', 'sedan' ou 'conversível'.
+- Uma Pessoa pode ter até 3 veículos
+- Os veículos podem ter as cores 'amarelo', 'azul' ou 'cinza'.
+- Os veículos podem ser dos modelos: 'escotilha', 'sedan' ou 'conversível'.
 
 ### Carford (loja de carros)
 - add proprietários (proprietários podem não ter carros → oportunidade de venda)
@@ -15,10 +19,10 @@
 1. Faça o clone do repositório do github
 ```bash
   # https
-  git clone https://github.com/wesscosta/app-carford.git
+  git clone https://github.com/wesscosta/carford-flask-postgres-api.git
 
   # ssh
-  git clone git@github.com:wesscosta/app-carford.git
+  git clone git@github.com:wesscosta/carford-flask-postgres-api.git
 ```
 2. Subir os containers
 ```bash

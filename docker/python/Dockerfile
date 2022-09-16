@@ -7,7 +7,7 @@ COPY ./code/backend/requierements.txt /requierements.txt
 RUN pip install -r /requierements.txt
 
 WORKDIR /var/www/
-COPY ./code/backend/app /var/www/
+COPY ./code/backend /var/www/
 
 RUN pip install gunicorn
 
